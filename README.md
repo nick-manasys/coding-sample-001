@@ -33,8 +33,16 @@ Pack Number: 2
 Pack Length: 7200, Pack Weight: 448.4
 ~~~~
 
-# How to run
+# How to build the project using maven
+Run
+~~~~
+mvn clean package
+~~~~
+then run from the command line as show below
+# Build using an IDE
+Import the maven project into your IDE. Build the project and then run from the command line as shown below.
 
+# How to run
 ~~~~
 java -cp target/coding-sample-001-1.0-SNAPSHOT.jar nz.co.manasys.App
 ~~~~
