@@ -17,10 +17,12 @@ Pack number: [pack number]
 Pack Length: [pack length], Pack Weight: [pack weight]
 ~~~~
 #STD input example: (input ends when an empty line is received or you reach the end of the input stream)
+~~~~
 NATURAL,40,500.0
 1001,6200,30,9.653
 2001,7200,50,11.21
-#Example output for the above input:
+~~~~
+# Example output for the above input:
 ~~~~
 Pack Number: 1
 1001,6200,30,9.653
