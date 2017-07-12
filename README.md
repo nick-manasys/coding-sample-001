@@ -38,6 +38,10 @@ Pack Length: 7200, Pack Weight: 448.4
 ~~~~
 java -cp target/coding-sample-001-1.0-SNAPSHOT.jar nz.co.manasys.App
 ~~~~
+# Run with test file as input
+~~~~
+java -cp target/coding-sample-001-1.0-SNAPSHOT.jar  nz.co.manasys.App  < src/test/resources/input002.txt
+~~~~
 
 Now copy and paste data into stdin
 
