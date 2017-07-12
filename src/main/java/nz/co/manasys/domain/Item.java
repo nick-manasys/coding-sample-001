@@ -39,4 +39,8 @@ public class Item {
         Item item = new Item(id, length, quantity, weight);
         return item;
     }
+
+    public String toString() {
+        return "Item " + id + "," + length + "," + quantity + "," + weight;
+    }
 }

@@ -17,6 +17,8 @@ public class Pack {
      */
     public List<Item> items = new ArrayList<Item>();
 
+    public double weight;
+
     public Pack(int id) {
         this.id = id;
     }

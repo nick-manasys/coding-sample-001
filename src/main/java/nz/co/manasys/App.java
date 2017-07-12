@@ -56,22 +56,28 @@ public class App {
         System.out.println("Processing outputs");
         List<Pack> packs = new ArrayList<Pack>();
         List<Item> sortedItems = sortItems(configuration.sortOrder, items);
-        double packTotalWeight = 0.0;
 
         int packNumber = 1;
+        int packLength = 0;
         Pack pack = new Pack(packNumber++);
         packs.add(pack);
-        Item item1 = new Item(sortedItems.get(0).id, sortedItems.get(0).length, 0, sortedItems.get(0).weight);
-        pack.items.add(item1);
         for (Item sortedItem : sortedItems) {
+            Item item1 = new Item(sortedItems.get(0).id, sortedItems.get(0).length, 0, sortedItems.get(0).weight);
+            pack.items.add(item1);
             for (int i = 0; i < sortedItem.quantity; i++) {
-                if (item1.quantity + 1 < configuration.maxPiecesPerPack
-                        && packTotalWeight + item1.weight < configuration.maxWeightPerPack) {
+                if (item1.quantity + 1 <= configuration.maxPiecesPerPack
+                        && pack.weight + item1.weight <= configuration.maxWeightPerPack) {
                     item1.quantity++;
-                    packTotalWeight += item1.weight;
+                    pack.weight += item1.weight;
+                    if (sortedItem.length > packLength) {
+                        packLength = sortedItem.length;
+                    }
                 } else {
+                    pack = new Pack(packNumber++);
+                    packs.add(pack);
                     item1 = new Item(sortedItems.get(0).id, sortedItems.get(0).length, 1, sortedItems.get(0).weight);
-                    packTotalWeight = 0.0;
+                    pack.items.add(item1);
+                    packLength = sortedItem.length;
                 }
             }
         }
