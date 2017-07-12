@@ -25,18 +25,25 @@ public class App {
         System.out.println("Bin packer 1.0\nReady at line 10 >");
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        if (null != (line = br.readLine().trim())) {
-            // read first line
-            strings = line.split(",");
-            configuration = Configuration.initialize(strings);
-            // System.out.println(configuration);
+        while (null != (line = br.readLine().trim()) && line.startsWith("#")) {
+            // do nothing
         }
+
+        // if (null != (line = br.readLine().trim())) {
+        // read first line
+        strings = line.split(",");
+        configuration = Configuration.initialize(strings);
+        // System.out.println(configuration);
+        // }
+
         while (null != (line = br.readLine().trim()) && !"".equals(line)) {
-            Item item;
-            strings = line.split(",");
-            item = Item.initialize(strings);
-            items.add(item);
-            // System.out.println(item);
+            if (!line.startsWith("#")) {
+                Item item;
+                strings = line.split(",");
+                item = Item.initialize(strings);
+                items.add(item);
+                // System.out.println(item);
+            }
         }
 
         if (null != configuration) {
@@ -53,7 +60,7 @@ public class App {
     }
 
     private static List<Pack> processInputs(Configuration configuration, List<Item> items) {
-        System.out.println("Processing outputs");
+        System.out.println("Processing outputs\n");
         List<Pack> packs = new ArrayList<Pack>();
         List<Item> sortedItems = sortItems(configuration.sortOrder, items);
 
