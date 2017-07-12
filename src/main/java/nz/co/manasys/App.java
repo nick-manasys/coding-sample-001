@@ -58,7 +58,6 @@ public class App {
         List<Item> sortedItems = sortItems(configuration.sortOrder, items);
 
         int packNumber = 1;
-        int packLength = 0;
         Pack pack = new Pack(packNumber++);
         packs.add(pack);
         for (Item sortedItem : sortedItems) {
@@ -69,15 +68,15 @@ public class App {
                         && pack.weight + item1.weight <= configuration.maxWeightPerPack) {
                     item1.quantity++;
                     pack.weight += item1.weight;
-                    if (sortedItem.length > packLength) {
-                        packLength = sortedItem.length;
+                    if (sortedItem.length > pack.length) {
+                        pack.length = sortedItem.length;
                     }
                 } else {
                     pack = new Pack(packNumber++);
                     packs.add(pack);
                     item1 = new Item(sortedItems.get(0).id, sortedItems.get(0).length, 1, sortedItems.get(0).weight);
                     pack.items.add(item1);
-                    packLength = sortedItem.length;
+                    pack.length = sortedItem.length;
                 }
             }
         }

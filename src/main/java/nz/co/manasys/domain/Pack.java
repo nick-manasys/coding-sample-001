@@ -17,6 +17,8 @@ public class Pack {
      */
     public List<Item> items = new ArrayList<Item>();
 
+    public int length;
+
     public double weight;
 
     public Pack(int id) {
@@ -25,14 +27,12 @@ public class Pack {
 
     public String toString() {
         String result = "Pack Number: " + id + "\n";
-        int packLength = 0;
         double packWeight = 0.0;
         for (Item item : items) {
-            packLength += item.length;
             packWeight += item.weight;
             result += item.id + "," + item.length + "," + item.quantity + "," + item.weight + "\n";
         }
-        result += "Pack Length: " + packLength + ", Pack Weight: " + packWeight + "\n";
+        result += "Pack Length: " + length + ", Pack Weight: " + packWeight + "\n";
         return result;
     }
 }
