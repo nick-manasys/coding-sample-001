@@ -29,10 +29,10 @@ public class Pack {
         String result = "Pack Number: " + id + "\n";
         double packWeight = 0.0;
         for (Item item : items) {
-            packWeight += item.weight;
+            packWeight += item.quantity * item.weight;
             result += item.id + "," + item.length + "," + item.quantity + "," + item.weight + "\n";
         }
-        result += "Pack Length: " + length + ", Pack Weight: " + packWeight + "\n";
+        result += "Pack Length: " + length + ", Pack Weight: " + String.format("%.2f", packWeight) + "\n";
         return result;
     }
 }
