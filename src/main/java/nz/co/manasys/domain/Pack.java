@@ -19,6 +19,8 @@ public class Pack {
 
     public int length;
 
+    public int quantity;
+
     public double weight;
 
     public Pack(int id) {

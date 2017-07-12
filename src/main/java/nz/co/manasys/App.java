@@ -64,26 +64,27 @@ public class App {
         List<Pack> packs = new ArrayList<Pack>();
         List<Item> sortedItems = sortItems(configuration.sortOrder, items);
 
-        int packNumber = 1;
-        Pack pack = new Pack(packNumber++);
-        packs.add(pack);
+        int packId = 1;
+        Pack currentPack = new Pack(packId++);
+        packs.add(currentPack);
         for (Item sortedItem : sortedItems) {
-            Item item1 = new Item(sortedItems.get(0).id, sortedItems.get(0).length, 0, sortedItems.get(0).weight);
-            pack.items.add(item1);
+            Item currentItem = new Item(sortedItem.id, sortedItem.length, 0, sortedItem.weight);
+            currentPack.items.add(currentItem);
             for (int i = 0; i < sortedItem.quantity; i++) {
-                if (item1.quantity + 1 <= configuration.maxPiecesPerPack
-                        && pack.weight + item1.weight <= configuration.maxWeightPerPack) {
-                    item1.quantity++;
-                    pack.weight += item1.weight;
-                    if (sortedItem.length > pack.length) {
-                        pack.length = sortedItem.length;
+                if (currentPack.quantity + 1 <= configuration.maxPiecesPerPack
+                        && currentPack.weight + currentItem.weight <= configuration.maxWeightPerPack) {
+                    currentItem.quantity++;
+                    currentPack.quantity++;
+                    currentPack.weight += currentItem.weight;
+                    if (sortedItem.length > currentPack.length) {
+                        currentPack.length = sortedItem.length;
                     }
                 } else {
-                    pack = new Pack(packNumber++);
-                    packs.add(pack);
-                    item1 = new Item(sortedItems.get(0).id, sortedItems.get(0).length, 1, sortedItems.get(0).weight);
-                    pack.items.add(item1);
-                    pack.length = sortedItem.length;
+                    currentPack = new Pack(packId++);
+                    packs.add(currentPack);
+                    currentItem = new Item(sortedItem.id, sortedItem.length, 1, sortedItem.weight);
+                    currentPack.items.add(currentItem);
+                    currentPack.length = sortedItem.length;
                 }
             }
         }
