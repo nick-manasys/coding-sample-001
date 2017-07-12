@@ -1,0 +1,8 @@
+#Example output for the above input:
+Pack Number: 1
+1001,6200,30,9.653
+2001,7200,10,11.21
+Pack Length: 7200, Pack Weight: 401.69
+Pack Number: 2
+2001,7200,40,11.21
+Pack Length: 7200, Pack Weight: 448.4
