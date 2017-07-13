@@ -18,45 +18,49 @@ import nz.co.manasys.domain.SortOrder;
  */
 public class App {
     public static void main(String[] args) throws IOException {
-        String line;
-        String[] strings;
-        Configuration configuration = null;
-        List<Item> items = new ArrayList<Item>();
-        System.out.println("Bin packer 1.0\nReady at line 10 >");
+        try {
+            String line;
+            String[] strings;
+            Configuration configuration = null;
+            List<Item> items = new ArrayList<Item>();
+            System.out.println("Bin packer 1.0\nReady at line 10 >");
 
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        while (null != (line = br.readLine().trim()) && line.startsWith("#")) {
-            // do nothing
-        }
-
-        // if (null != (line = br.readLine().trim())) {
-        // read first line
-        strings = line.split(",");
-        configuration = Configuration.initialize(strings);
-        // System.out.println(configuration);
-        // }
-
-        while (null != (line = br.readLine().trim()) && !"".equals(line)) {
-            if (!line.startsWith("#")) {
-                Item item;
-                strings = line.split(",");
-                item = Item.initialize(strings);
-                items.add(item);
-                // System.out.println(item);
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            while (null != (line = br.readLine().trim()) && line.startsWith("#")) {
+                // do nothing
             }
-        }
 
-        if (null != configuration) {
-            // process
-            List<Pack> packs = processInputs(configuration, items);
-            System.out.println("Processed packs");
+            // if (null != (line = br.readLine().trim())) {
+            // read first line
+            strings = line.split(",");
+            configuration = Configuration.initialize(strings);
+            // System.out.println(configuration);
+            // }
 
-            for (Pack pack : packs) {
-                System.out.println(pack);
+            while (null != (line = br.readLine().trim()) && !"".equals(line)) {
+                if (!line.startsWith("#")) {
+                    Item item;
+                    strings = line.split(",");
+                    item = Item.initialize(strings);
+                    items.add(item);
+                    // System.out.println(item);
+                }
             }
-        }
 
-        System.out.println("Fisnished");
+            if (null != configuration) {
+                // process
+                List<Pack> packs = processInputs(configuration, items);
+                System.out.println("Processed packs");
+
+                for (Pack pack : packs) {
+                    System.out.println(pack);
+                }
+            }
+
+            System.out.println("Fisnished");
+        } catch (Exception e) {
+            System.out.println("Could not execute computation");
+        }
     }
 
     private static List<Pack> processInputs(Configuration configuration, List<Item> items) {
