@@ -63,7 +63,12 @@ public class App {
         }
     }
 
-    private static List<Pack> processInputs(Configuration configuration, List<Item> items) {
+    /**
+     * @param configuration
+     * @param items
+     * @return
+     */
+    public static List<Pack> processInputs(Configuration configuration, List<Item> items) {
         System.out.println("Processing outputs\n");
         List<Pack> packs = new ArrayList<Pack>();
         List<Item> sortedItems = sortItems(configuration.sortOrder, items);
@@ -95,7 +100,7 @@ public class App {
         return packs;
     }
 
-    private static List<Item> sortItems(SortOrder sortOrder, List<Item> items) {
+    public static List<Item> sortItems(SortOrder sortOrder, List<Item> items) {
         List<Item> result = null;
         switch (sortOrder) {
         case NATURAL:
@@ -106,7 +111,7 @@ public class App {
                     .collect(Collectors.toList());
             break;
         case LONG_TO_SHORT:
-            result = items.stream().sorted((a, b) -> ((Integer) a.length).compareTo(b.length))
+            result = items.stream().sorted((a, b) -> ((Integer) b.length).compareTo(a.length))
                     .collect(Collectors.toList());
             break;
         }
