@@ -59,7 +59,7 @@ public class App {
 
             System.out.println("Fisnished");
         } catch (Exception e) {
-            System.out.println("Could not execute computation");
+            System.out.println("Could not execute computation: " + e.getMessage());
         }
     }
 
